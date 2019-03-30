@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'Engraver GT';
+  src: url('../dist/Engravers_Gothic_Regular.otf');
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../dist/Proxima_Nova_Reg.ttf');
+}
+
+.pdpWide{
+    position: relative;
+    width: 426px;
+    float: right;
+}
+@media only screen and (max-width: 768px) and (min-width: 481px){
+  .pdpWide {
+    max-width: 300px;
+    margin-right: 25%;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+div {
+  display: block;
+}
+#page-content {
+  letter-spacing: 0;
+  font-size: 15px;
+  font-weight: 300;
+  min-height: 500px;
+}
+body {
+  margin: 0;
+  font-style: normal;
+  font-family: 'Engraver GT';
+  font-size: 15px;
+  line-height: 20px;
+  color: #333333;
+}
+body {
+  letter-spacing: 0;
+  font-size: inherit;
+  font-weight: 300;
+}

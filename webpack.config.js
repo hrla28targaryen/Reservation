@@ -1,27 +1,44 @@
-var webpack = require('webpack');
-var path = require('path');
-
-var BUILD_DIR = path.resolve(__dirname, 'client/dist');
-var APP_DIR = path.resolve(__dirname, 'client/src');
-
-var config = {
-  entry: APP_DIR + '/index.jsx',
+const webpack = require('webpack');
+const path = require('path');
+const combinedLoaders = require('webpack-combine-loaders');
+module.exports = {
+  entry: __dirname + '/client/src/index.jsx',
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?/,
-        include: APP_DIR,
-        loader: 'babel',
-        query: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
-        }
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            "@babel/env",
+            "@babel/react"]
+        },
+      },
+      {
+        test: /\.s?css$/,
+        loader: combinedLoaders([
+         {
+           loader: 'style-loader'
+         }, {
+           loader: 'css-loader',
+           query: {
+             modules: true,
+             localIdentName: '[name]__[loader]__[hash:base64:5]'
+           }
+         }, {
+           loader : 'sass-loader'
+         }
+        ])
+      },
+      {
+        test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg|otf)(\?[a-z0-9=.]+)?$/,
+        loader: 'url-loader?limit=100000' 
       }
-    ]
+    ],
   },
   output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
+    path: __dirname + '/client/dist/',
+    filename: 'bundle.js',
   }
 };
-
-module.exports = config;

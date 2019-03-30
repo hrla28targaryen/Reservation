@@ -10,7 +10,7 @@ const router = express.Router();
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
-server.use('/', express.static(path.join(__dirname, './client/dist/')))
+server.use('/', express.static(path.join(__dirname, '../client/dist/')))
 server.use('/api', router);
 
 server.listen(PORT, ()=>console.log(`listening to port: ${PORT} , great!`));
