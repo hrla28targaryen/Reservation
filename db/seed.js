@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Reservation } = require('./index.js');
+const { Reservation, Product } = require('./index.js');
 
 
 var sizePool = [
@@ -41,29 +41,49 @@ var lengthPool = [
 ]
 
 var seedData = [];
-var k = 1;
+var k = 1; //for itemID
+
+const designerPool = [
+  'Alexander McQueen', 'Betsey Johnson', 'Emilio Pucci', 'Miuccia Prada', 'Riccardo Tisci', 'Le Corbusier', 'Coco Chanel'
+]
+
+const itemNamePool = [
+  'Chill', 'Lit', 'n', 'Mara', 'Delicate', '1004', 'Payton', 'Chiffon', 'Cropped', 'Column', 'Wrap', 'Isabella', 'Lia',
+  'Metallic', 'Deconstructed', 'Hetty', 'Track', 'Nell', 'Ella', 'Tank', 'Tie', 'Wild', 'WildFlower', 'Tiger', 'Ellii',
+  'Sha', 'Ira', 'Miya', 'dark', 'light'
+];
+
+const cataPool = [
+  'Dress', 'Bag', 'Earrings', 'Top', 'Pants'
+];
 
 for (let i = 1; i <= 100; i++) {
   var productID = 'HRLA' + String(i).padStart(3, 0);
-  var itemNumber = 10 + Math.floor(Math.random() * 6);
-  var whetherL = Math.ceil(Math.random() * 10);
-  var sSelector = Math.floor(Math.random() * 3);
+  var productName = `${itemNamePool[Math.floor(Math.random() * itemNamePool.length)]} ${cataPool[Math.floor(Math.random() * cataPool.length)]}`;
+  var designerName = `${designerPool[Math.floor(Math.random() * designerPool.length)]}`;
+  var facebook = Math.floor(Math.random() * 1000);
+  var items = [];
+
+  var _itemNumber = 5 + Math.floor(Math.random() * 6);
+  var _whetherL = Math.ceil(Math.random() * 10);
+  var _sizeFormat = Math.floor(Math.random() * 3);
+
   var rentPrice = 80 + 10 * Math.round(Math.random() * 5);
   var purchasePrice = rentPrice * 5;
 
-  for (let j = 1; j <= itemNumber; j++) {
-    var randS = Math.floor(Math.random() * 8);
+  for (let j = 1; j <= _itemNumber; j++) { // generate n items per product
+    var randS = (j - 1) % 8;
     var randL = Math.floor(Math.random() * 4);
 
-    if (sSelector === 0) {
+    if (_sizeFormat === 0) {
       var size = sizePool[randS].US;
-    } else if (sSelector === 1) {
+    } else if (_sizeFormat === 1) {
       var size = `US ${sizePool[randS].US} ${sizePool[randS].FR ? `/ FR ${sizePool[randS].FR}` : ''}`;
     } else {
       var size = `${sizePool[randS].SML}`;
     }
 
-    if (whetherL > 8) {
+    if (_whetherL > 8) {
       size = size + `, ${lengthPool[randL]}`
     }
 
@@ -77,18 +97,36 @@ for (let i = 1; i <= 100; i++) {
     // diff between later & tomorrow is 10454400000
     // console.log(new Intl.DateTimeFormat().format(tomorrow.setDate(tomorrow.getDate() + 1)))
 
-    var newItem = { itemID, productID, size, rentPrice, purchasePrice, availableDate };
-    seedData.push(newItem);
+    items.push({ itemID, size, availableDate });
+
+
   }
+
+  let prod = new Product({
+    productID: productID, //through for loop
+    productName: productName, //random generator
+    designerName: designerName, //random gen
+    facebook: facebook, // random gen
+    rentPrice: rentPrice,
+    purchasePrice: purchasePrice,
+    items: items
+  });
+  prod.save()
+    .then(() => {
+      Product.findOne({ productID: productID }) // just to see if the prod above is saved
+        .then(productWithComments => console.log(productWithComments.items.length))
+    })
+    .catch(err => console.log(err));
+  // seedData.push(productID, productName, designerName, facebook, items);
 };
 
-const seedFunction = () => {
-  Reservation.create(seedData)
-    .then(() => {
-      console.log('seed planted to reservation db');
-      mongoose.connection.close();
-    })
-    .catch(err => console.error(err))
-}
+// const seedFunction = () => {
+//   Product.create(seedData)
+//     .then(() => {
+//       console.log('seed planted to product db');
+//       mongoose.connection.close();
+//     })
+//     .catch(err => console.error(err))
+// }
 
-seedFunction();
+// seedFunction();

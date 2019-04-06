@@ -1,0 +1,202 @@
+@font-face {
+  font-family: 'Engraver GT';
+  src: url('../dist/Engravers_Gothic_Regular.otf');
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../dist/Proxima_Nova_Reg.ttf');
+}
+@font-face {
+  font-family: 'Proxima Nova-Bold';
+  src: url('../dist/Proxima-Nova-Bold.otf');
+}
+  
+.reservationForm {
+  margin-bottom: 17px;
+  border-top: 1px solid #DDDDDD;
+  display: block;
+  clear: both;
+}
+.zipCodeWrapper {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 21px 0;
+  padding-right: 11.2%;
+  width: 60%; 
+}
+.destinationZip , .rentableForm{
+  display: block;
+  font-family: 'Engraver GT';
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  line-height: 18px;
+  margin-bottom: 7px;
+  color: #333333;
+}
+.reservationZip, .rentableSize, .datePicker {
+  box-sizing: border-box;
+  display: block;
+  height: 44px;
+  line-height: 30px;
+  padding: 5px 10px;
+  width: 207.891px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  color: rgb(51, 51, 51);
+  border: 1px solid #DDDDDD;
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  background-color: white;
+}
+.rentableSize {
+  background-image: url(../dist/dropdown.png) ;
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+  background-attachment: fixed;
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: rgb(255, 255, 255);
+  background-origin: padding-box;
+  background-size: 12px;
+  overflow: hidden;
+}
+
+.reservationZip:focus {
+  border: 1px solid rgb(51, 51, 51);
+}
+.rentableSize:focus {
+  border: 1px solid rgb(51, 51, 51);
+}
+.datePicker:focus {
+  border: 1px solid rgb(51, 51, 51);
+}
+.size {
+  display: inline-block;
+  padding-right: 1.2%;
+}
+.sizebackup{
+  display: inline-block;
+}
+
+.sizeRefTable {
+  display: block;
+  padding: 10px 0 0;
+  text-align: right;
+}
+.sizeRefButton {
+  font-family: 'Engraver GT';
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: inherit;
+  line-height: 100%;
+  padding-bottom: 2px;
+  border: none;
+  border-bottom: 1px solid;
+  display: inline-block;
+}
+.reservationDateWindow {
+  margin: 15px 0;
+  border: 0;
+  padding: 0.15px 0 0;
+  display: block;
+  height: 80px;
+  font-family: 'Engraver GT';
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: inherit;
+}
+.labelReservationDateWindow_legend {
+  display: block;
+  margin-bottom: 10px;
+  line-height: 18px;
+}
+.reservationDateWindow_durations {
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+  height: 49.432px;
+}
+.reservationDateWindow_date {
+  display: inline-block;
+  vertical-align: top;
+  width: 60%;
+  margin: 0;
+}
+
+.radioContainter {
+  display: block;
+  position: relative;
+  justify-content: left;
+  height: 19px;
+  margin-bottom: 7px;
+  cursor: pointer;
+}
+.radioContainter input {
+  opacity: 0;
+}
+.checkmark {
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  border-radius: 100%;
+  border: 1px solid #333333;
+  cursor: default;
+}
+//When the radio button is checked, add a white background
+.radioContainter input:checked ~ .checkmark {
+  background-color: white;
+}
+// Create the indicator (the dot/circle - hidden when not checked)
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+//Show the indicator (dot/circle) when checked
+.radioContainter input:checked ~ .checkmark:after {
+  display: block;
+}
+//Style the indicator (dot/circle) 
+.radioContainter .checkmark:after {
+  top: 3px;
+  left: 2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgb(197, 149, 109);
+}
+
+.radioWord {
+  display: inline;
+  position: relative;
+  left:15px
+}
+
+//not used ?
+.datepickerLabel {
+  cursor: pointer;
+  position: absolute;
+  overflow: hidden;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  display: block;
+  margin-bottom: 7px;
+}
+.datePicker {
+  width: 98%;
+  background-image: url(../dist/calendar.png) ;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: 98% 57%;
+  background-attachment: fixed;
+  -webkit-animation: none;
+  -webkit-appearance: none;
+}

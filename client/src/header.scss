@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'Engraver GT';
+  src: url('../dist/Engravers_Gothic_Regular.otf');
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../dist/Proxima_Nova_Reg.ttf');
+}
+@font-face {
+  font-family: 'Proxima Nova-Bold';
+  src: url('../dist/Proxima-Nova-Bold.otf');
+}
+
+@media only screen and (max-width: 768px) and (min-width: 481px){
+  .pdpWide_primary  {
+    max-width: 300px;
+    margin-right: 25%;
+  }
+  .pdpHeader_infoTop {
+    margin-top: -1.2em;
+  }
+}
+// =============
+.pdpWide_primary {
+    position: relative;
+    width: 426px;
+    float: right;
+}
+
+.pdpHeader_infoTop {
+  display: -webkit-flex; /* Safari 6.1+ */
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.heart {
+  cursor: pointer;
+}
+
+.heart_buttonMinimal {
+  border: 0;
+  color: transparent;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0;
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
+  width: 50px;
+  outline: none;
+}
+.like {
+  width: 22px;
+  height: 18px;
+  display: inline-block;
+  margin-right: 1ex;
+  vertical-align: middle;
+}
+
+.pdpHeader_displayName {
+  font-family: 'Proxima Nova';
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.h3 {
+  font-size: 28px;
+  font-family: Genath-Regular, serif;
+  font-weight: inherit;
+  line-height: 1.2em;
+  margin: 0;
+}
+
+.pdpPrice {
+  zoom: 1;
+  float: left;
+  position: relative;
+}
+.pdpPrice_price {
+  color: #999999;
+  margin-bottom: 0;
+  padding-top: 5px;
+  display: inline-block;
+  line-height: 20px;
+  margin-top: 0;
+// .pdpPrice_priceRental {
+  font-family: 'Proxima Nova';
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.productPriceOriginal {
+  font-family: 'Proxima Nova-Bold';
+  color: #333333;
+}
+.pdpPrice_priceType {
+  font-size: 13px;
+  padding-left: 4px;
+  color: #333333;
+  display: inline-block;
+}
+.pdpPrice_noDiscount {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+.gridProductCardPrice {
+  padding-left: 10px;
+  color:rgb(153, 153, 153);
+  display:inline-block;
+  font-size: 13px;
+  height: 18px;
+  letter-spacing: normal;
+  line-height: 18px;
+}

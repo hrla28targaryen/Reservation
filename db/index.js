@@ -9,11 +9,8 @@ mongoose.connect('mongodb://localhost/renttherunway', { useNewUrlParser: true })
 var reservationSchema = new mongoose.Schema({
   itemID: { type: String, required: true },
   size: { type: String, required: true },
-  availableDate: [{ type: Date }],
-  rentPrice: { type: Number, required: true },
-  purchasePrice: { type: Number },
-  productID: { type: String, required: true}
-} 
+  availableDate: [{ type: Date }]
+}
 // , { timestamps: { createdAt: 'created_at' } }
 );
 
@@ -21,14 +18,17 @@ var Reservation = mongoose.model('reservations', reservationSchema);
 
 
 const productSchema = new mongoose.Schema({
-  productID: {type: String, Unique: true},
-  itemName: {type: String},
-  designerName: {type: String},
-  facebook: {type: String}
+  productID: { type: String }, //HRLA001 to HRLA100
+  productName: { type: String },
+  designerName: { type: String },
+  facebook: { type: Number },
+  rentPrice: { type: Number, required: true },
+  purchasePrice: { type: Number },
+  items: [reservationSchema]
+  // comments: [commentSchema]
 });
 
 const Product = mongoose.model('products', productSchema);
-
 
 module.exports = {
   Reservation, Product
