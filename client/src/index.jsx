@@ -1,10 +1,13 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
 import ReactDOM from 'react-dom';
+import { Button, Modal, ButtonToolbar } from 'react-bootstrap';
+import $ from 'jquery';
+
 import header from './header.scss';
 import inputForm from './form.scss';
 import info from './info.scss';
-import $ from 'jquery';
+import MyVerticallyCenteredModal from './components/modalLike.jsx';
 
 class Reservation extends React.Component {
   constructor(props) {
@@ -16,7 +19,8 @@ class Reservation extends React.Component {
       facebook: 0,
       rentPrice: 0,
       purchasePrice: 0,
-      items: []
+      items: [],
+      sign_in: false,
     }
     this.fetchOne = this.fetchOne.bind(this);
   }
@@ -35,6 +39,8 @@ class Reservation extends React.Component {
   render() {
     var allSize = this.state.items.map(e => e.size);
     allSize = allSize.filter((item, idx) => allSize.indexOf(item) === idx);
+    let modalClose = () => this.setState({ sign_in: false });
+
     return (
       <div className={header.pdpWide_primary}>
         <div id="1header">
@@ -44,9 +50,13 @@ class Reservation extends React.Component {
             </h1>
             <div className="pdpHeader_heart" >
               <div className={header.heart} >
-                <button className={header.heart_buttonMinimal} >
-                  <img className={header.like} src="like.png" />
-                </button>
+                <div className={header.heart_buttonMinimal} variant="primary" onClick={() => this.setState({ sign_in: true })} >
+                  <img className={header.like} src="./icons/like.png" />
+                </div>
+                <MyVerticallyCenteredModal
+                  show={this.state.sign_in}
+                  onHide={modalClose}
+                />
               </div>
             </div>
           </div>
@@ -70,7 +80,7 @@ class Reservation extends React.Component {
               <button className={header.questionButton} >
               </button>
               <span className={header.tooltiptext}>
-                <p className={header.description}>Price varies depending on date. <br/>Pick your date to see price.</p>
+                <p className={header.description}>Price varies depending on date. <br />Pick your date to see price.</p>
                 <p className={header.descExit}>x</p>
               </span>
               <span className={header.pdpPrice_priceType} >
@@ -160,14 +170,14 @@ class Reservation extends React.Component {
                     </label>
                     <label htmlFor="reservationPro" className={inputForm.proLabel}>I want free shipping &amp; insurance with PRO.
                     </label>
-                    <a className={inputForm.standAlone} type="button">Learn More</a>
+                    <a className={inputForm.standAlone} >Learn More</a>
                   </div>
                   <div className={inputForm.labelPRO}></div>
                 </div>
               </div>
 
               <div className="add-to-bag-button">
-              <button className={inputForm.btnFullWidth} type="submit">Add to Bag</button>
+                <button className={inputForm.btnFullWidth} type="submit">Add to Bag</button>
               </div>
             </div>
           </form>
@@ -189,7 +199,7 @@ class Reservation extends React.Component {
           </div>
 
           <div className={info.productDetails}>
-            <Collapsible transitionTime="10"  trigger="Stylist Notes"className={info.collapsibleTitle}  >
+            <Collapsible transitionTime="10" trigger="Stylist Notes" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>Experience this beautiful {this.state.productName.split(' ')[1]} designed by {this.state.designerName}.</p>
               </div>
@@ -197,7 +207,7 @@ class Reservation extends React.Component {
 
             <Collapsible transitionTime="10" trigger="SIZE &amp; FIT" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
-                <p>Size available from {String(allSize[0]).split(',')[0]} to {String(allSize[0]).split(',')[0]===String(allSize[allSize.length-1]).split(',')[0]?String(allSize[allSize.length-2]).split(',')[0]:String(allSize[allSize.length-1]).split(',')[0]}</p>
+                <p>Size available from {String(allSize[0]).split(',')[0]} to {String(allSize[0]).split(',')[0] === String(allSize[allSize.length - 1]).split(',')[0] ? String(allSize[allSize.length - 2]).split(',')[0] : String(allSize[allSize.length - 1]).split(',')[0]}</p>
               </div>
             </Collapsible>
 
@@ -222,6 +232,7 @@ class Reservation extends React.Component {
           </div>
         </div>
 
+   
       </div>
     );
   }

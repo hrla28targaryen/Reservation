@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Engraver GT';
-  src: url('../dist/Engravers_Gothic_Regular.otf');
+  src: url('../dist/fonts/Engravers_Gothic_Regular.otf');
 }
   
 .reservationForm {
@@ -43,7 +43,7 @@
   background-color: white;
 }
 .rentableSize {
-  background-image: url(../dist/dropdown.png) ;
+  background-image: url(../dist/icons/dropdown.png) ;
   background-repeat: no-repeat;
   background-position: 95% 50%;
   background-attachment: fixed;
@@ -107,6 +107,7 @@
   display: block;
   margin-bottom: 10px;
   line-height: 18px;
+  font-size: 12px;
 }
 .reservationDateWindow_durations {
   display: inline-block;
@@ -159,8 +160,8 @@
 }
 //Style the indicator (dot/circle) 
 .radioContainter .checkmark:after {
-  top: 3px;
-  left: 3px;
+  top: 2px;
+  left: 2px;
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -186,7 +187,7 @@
 }
 .datePicker {
   width: 98%;
-  background-image: url(../dist/calendar.png) ;
+  background-image: url(../dist/icons/calendar.png) ;
   background-size: 28px;
   background-repeat: no-repeat;
   background-position: 95% 52%;
@@ -297,11 +298,13 @@
   display: inline-block;
   margin: 0 0 15px 8px;
   cursor: pointer;
+  background: transparent;
+  outline: none;
 }
 .labelPRO {
   height: 47px;
   width: 39.5px;
-  background: url(../dist/prolabel.png) no-repeat;
+  background: url(../dist/icons/prolabel.png) no-repeat;
   background-size: 39.5px;
   position: absolute;
   right: 15px;

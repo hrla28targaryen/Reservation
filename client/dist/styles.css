@@ -83,3 +83,6 @@ p {
   margin-right: 15px;
   transition: none;
 }
+u {
+  cursor: pointer;
+}

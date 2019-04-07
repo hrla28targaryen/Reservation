@@ -1,0 +1,230 @@
+@font-face {
+  font-family: 'Engraver GT';
+  src: url('../../dist/fonts/Engravers_Gothic_Regular.otf');
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../../dist/fonts/Proxima_Nova_Reg.ttf');
+}
+@font-face {
+  font-family: 'Proxima Nova-Bold';
+  src: url('../../dist/fonts/Proxima-Nova-Bold.otf');
+}
+
+.title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: normal;
+  line-height: 26px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+.likeForm {
+  display:inline-block;
+  margin: 0;
+  width: 365px;
+  padding: 0;
+  margin-top: 40px;
+}
+.likeFormHead {
+  font-family: 'Engraver GT';
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  line-height: 18px;
+  margin-bottom: 7px;
+}
+.emailInput {
+  display: block;
+  cursor: text;
+  width: 100%;
+  height: 44px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 30px;
+  padding: 5px 10px 0px 10px;
+  margin: 0 0 15px 0;
+}
+.emailInput:focus {
+  outline: black solid 1px;
+}
+.passForm {
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  padding-right: 10px;
+  margin: 15px 0 10px;
+}
+.passLabel {
+  text-transform: uppercase;
+  font-family: 'Engraver GT';
+  font-size: 12px;
+  letter-spacing: 2px;
+  display: block;
+  text-align: left;
+  margin-bottom: 7px;
+}
+.passInput {
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 30px;
+  padding: 5px 10px;
+  margin: 0 0 0px 0;
+  display: block;
+  width: 100%;
+  height: 44px;
+}
+.passInput:focus {
+  outline: black solid 1px;;
+}
+.dateForm {
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  margin: 15px 0 10px;
+  height: 74px;
+  padding-left: 10px;
+}
+.dateLabel {
+  font-family: 'Engraver GT';
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: left;
+  letter-spacing: 2px;
+  line-height: 18px;
+  display: block;
+  margin-bottom: 7px;
+  color: #333333;
+}
+.dateInput {
+  float: left;
+  width: 33.3333%;
+  border: 1px solid #DDDDDD;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px;
+  height: 44px;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 30px;
+  padding: 5px 8px;
+  margin: 0;
+}
+.termsConditions {
+  font-size: 12px;
+  font-family: 'Proxima Nova';
+  letter-spacing: 0.1px;
+  text-align: left;
+  margin-bottom: 10px;
+  display: block;
+  margin: 0 0 10px;
+  padding: 0;
+}
+.termsConditions a {
+  text-decoration: underline;
+  color: #333333;
+}
+.unlockOffer {
+  width: 100%;
+  color: #FFFFFF;
+  background-color: #333333;
+  height: 44px;
+}
+.unlockOfferTxt {
+  font-family: 'Engraver GT';
+  letter-spacing: 2px;
+  font-size: 14px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 300;
+  line-height: 43px;
+  padding: 0 30px;
+}
+
+.socLogSeparator {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #F7F7F7;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.orSeparator {
+  line-height: 22px;
+  text-transform: uppercase;
+  font-family: 'Engraver GT';
+  letter-spacing: 2px;
+  position: relative;
+  top: 10px;
+  font-size: 11px;
+  color: #333333;
+  background-color: white;
+  width: 40px;
+  background-position: 50% 50%; 
+  margin: 0;
+  text-align: center;
+}
+.googleButton {
+  width: 100%;
+  color: #FFFFFF;
+  background-color: #4285F4;;
+  height: 44px;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+}
+.googleIcon {
+  padding: 0 30px;
+  background: url(../../dist/icons/google.png) no-repeat;
+  background-position: 3% 50%;
+  background-size: 24px;
+  font-family: 'Engraver GT';
+  font-weight: 300;
+  line-height: 43px;
+  align-content: center;
+  letter-spacing: 2px;
+  font-size: 14px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  display: block;
+  border: none;
+  width: 100%;
+}
+.noSeparator {
+  margin-bottom: 20px;
+  border:0;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.hasAccount {
+  line-height: 22px;
+  text-transform: uppercase;
+  font-family: 'Engraver GT';
+  letter-spacing: 2px;
+  position: relative;
+  top: 10px;
+  font-size: 12px;
+  color: #333333;
+  width: 40pxx;
+  background-position: 50% 50%; 
+  margin: 0;
+  text-align: center;
+  cursor: pointer;
+  text-underline-position: unset ;
+}
