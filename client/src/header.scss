@@ -102,6 +102,77 @@
   color: #333333;
   display: inline-block;
 }
+.questionButton{
+  width: 39px;
+  height: 17px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  background: url('../dist/question.png') no-repeat;
+  background-size: 16px;
+  background-position: 50% 50%;
+  outline: none;
+  vertical-align: middle;
+}
+.tooltiptext {
+  visibility: hidden;
+  background: #FFFFFF;
+  position: absolute;
+  bottom: 100%;
+  left: 10%;
+  border: 1px solid #333333;
+  padding: 15px;
+  text-align: center;
+  z-index: 10;
+  width: 218px;
+}
+.description {
+  margin: 0px;
+  float: left;
+  width: 185px;
+  height: 30px;
+  text-align: left;
+  font-family: 'Proxima Nova';
+  font-size: 13px;
+  line-height: 15px;
+  color: #333333;
+}
+.descExit {
+  float: right;
+  height: 100%;
+  cursor: pointer;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  text-transform: none;
+  margin: 0;
+  padding: 0;
+  color: #333333
+}
+.tooltiptext::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 44%;
+  border-style: outset;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #333333 transparent transparent transparent;
+}
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 45%;
+  border-style: outset;
+  border-width: 8px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+.questionButton:focus + .tooltiptext {
+  visibility: visible;
+}
 .pdpPrice_noDiscount {
   padding-left: 10px;
   padding-right: 10px;

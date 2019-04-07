@@ -2,14 +2,6 @@
   font-family: 'Engraver GT';
   src: url('../dist/Engravers_Gothic_Regular.otf');
 }
-@font-face {
-  font-family: 'Proxima Nova';
-  src: url('../dist/Proxima_Nova_Reg.ttf');
-}
-@font-face {
-  font-family: 'Proxima Nova-Bold';
-  src: url('../dist/Proxima-Nova-Bold.otf');
-}
   
 .reservationForm {
   margin-bottom: 17px;
@@ -86,6 +78,8 @@
   text-align: right;
 }
 .sizeRefButton {
+  cursor: pointer;
+  outline: none;
   font-family: 'Engraver GT';
   font-size: 12px;
   text-transform: uppercase;
@@ -143,8 +137,8 @@
   position: absolute;
   top: 2px;
   left: 0;
-  height: 14px;
-  width: 14px;
+  height: 15px;
+  width: 15px;
   border-radius: 100%;
   border: 1px solid #333333;
   cursor: default;
@@ -166,7 +160,7 @@
 //Style the indicator (dot/circle) 
 .radioContainter .checkmark:after {
   top: 3px;
-  left: 2px;
+  left: 3px;
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -193,10 +187,144 @@
 .datePicker {
   width: 98%;
   background-image: url(../dist/calendar.png) ;
-  background-size: 30px;
+  background-size: 28px;
   background-repeat: no-repeat;
-  background-position: 98% 57%;
+  background-position: 95% 52%;
   background-attachment: fixed;
+  background-attachment: scroll;
   -webkit-animation: none;
   -webkit-appearance: none;
+}
+
+.ctaContainer {
+  display: block;
+  font-style: normal;
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 20px;
+  color: #333333;
+}
+.pro_cta {
+  display: block;
+  background-color: #F4EDE5;
+  margin: 20px 0;
+  padding: 15px 70px 0 15px;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0;
+  font-size: 13px;
+}
+.includeProHidden {
+  -webkit-appearance: initial;
+  background-color: initial;
+  cursor: default;
+  border: initial;
+  display: none;
+  -webkit-rtl-ordering: logical;
+  -webkit-writing-mode: horizontal-tb !important;
+}
+.includeProCheckbox {
+  display: block;
+  position: relative;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.includeProCheckbox input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+// Create a custom checkbox 
+.includeProSpan {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  background-color: white;
+  border: 1px solid black;
+}
+/* When the checkbox is checked, add a blue background */
+.includeProCheckbox input:checked ~ .includeProSpan {
+  background-color: white;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.includeProSpan:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.includeProCheckbox input:checked ~ .includeProSpan:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.includeProCheckbox .includeProSpan:after {
+  left: 4px;
+  top: 0px;
+  width: 4px;
+  height: 9px;
+  border: solid rgb(197, 149, 109);
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(40deg);
+  -ms-transform: rotate(40deg);
+  transform: rotate(40deg);
+}
+
+.proLabel {
+  line-height: 18px;
+  text-transform: none;
+  letter-spacing: 0;
+  padding-left: 28px;
+  cursor: pointer;
+}
+.standAlone {
+  position: relative;
+  left:28px;
+  font-family: 'Engraver GT';
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: inherit;
+  line-height: 100%;
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentColor;
+  display: inline-block;
+  margin: 0 0 15px 8px;
+  cursor: pointer;
+}
+.labelPRO {
+  height: 47px;
+  width: 39.5px;
+  background: url(../dist/prolabel.png) no-repeat;
+  background-size: 39.5px;
+  position: absolute;
+  right: 15px;
+  top: 0;
+}
+.btnFullWidth {
+  margin: 15px 0 0;
+  display: block;
+  width: 100%;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-family: 'Engraver GT';
+  font-size: 14px;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 300;
+  letter-spacing: 2px;
+  line-height: 43px;
+  height: 44px;
+  padding: 0 30px;
+  text-transform: uppercase;
 }

@@ -46,3 +46,40 @@ button {
 #2form {
   display: block;
 }
+p {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: 0;
+  text-transform: none;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.Collapsible {
+  border-bottom: 1px solid #DDDDDD;
+  padding: 15px 0;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  text-transform: uppercase;
+  font-family: EngraversGothic BT, serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  line-height: 18px;
+  color: #999999;
+  transition: none;
+  border-bottom: 1px solid #DDDDDD;
+}
+.Collapsible span:after {
+  content: "\2212";
+  color: #999999;
+  font-size: 15px;
+  float: right;
+  margin-bottom: 20px;
+  margin-right: 15px;
+  transition: none;
+}
