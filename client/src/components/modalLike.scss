@@ -132,6 +132,10 @@
   background-color: #333333;
   height: 44px;
 }
+.unlockOffer:hover {
+  outline: none;
+  opacity: 0.85;
+}
 .unlockOfferTxt {
   font-family: 'Engraver GT';
   letter-spacing: 2px;
@@ -182,6 +186,10 @@
   text-align: center;
   white-space: nowrap;
   display: flex;
+}
+.googleButton:hover {
+  outline: none;
+  opacity: 0.85;
 }
 .googleIcon {
   padding: 0 30px;

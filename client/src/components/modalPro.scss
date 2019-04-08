@@ -107,6 +107,10 @@
 .blackbutton:focus {
   outline: none;
 }
+.blackbutton:hover {
+  outline: none;
+  opacity: 0.85;
+}
 .disclaimer {
   color: #999999;
   font-family: 'Times New Roman', Times, serif;

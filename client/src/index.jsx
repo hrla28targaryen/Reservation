@@ -43,6 +43,7 @@ class Reservation extends React.Component {
   render() {
     var allSize = this.state.items.map(e => e.size);
     allSize = allSize.filter((item, idx) => allSize.indexOf(item) === idx);
+    var emptySpaces='                      ';
     
     let modalClose1 = () => this.setState({ sign_in: false });
     let modalClose2 = () => this.setState({ size_table: false });
@@ -214,25 +215,25 @@ class Reservation extends React.Component {
           </div>
 
           <div className={info.productDetails}>
-            <Collapsible transitionTime="10" trigger="Stylist Notes" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime="10" trigger="Stylist Notes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>Experience this wonderful {this.state.productName.split(' ')[1]} designed by {this.state.designerName}.</p>
               </div>
             </Collapsible>
 
-            <Collapsible transitionTime="10" trigger="SIZE &amp; FIT" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime="10" trigger="SIZE &amp; FIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>Size available from {String(allSize[0]).split(',')[0]} to {String(allSize[0]).split(',')[0] === String(allSize[allSize.length - 1]).split(',')[0] ? String(allSize[allSize.length - 2]).split(',')[0] : String(allSize[allSize.length - 1]).split(',')[0]}</p>
               </div>
             </Collapsible>
 
-            <Collapsible transitionTime="10" trigger="Product Details" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime="10" trigger="Product Details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>{this.state.productName.split(' ')[0]}. See size and fit tab for length. Imported.</p>
               </div>
             </Collapsible>
 
-            <Collapsible transitionTime="10" trigger="Share" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime="10" trigger="Share&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <div className={info.facebook}>
                   <button> <div> </div><b>Like</b> {this.state.facebook}</button>
