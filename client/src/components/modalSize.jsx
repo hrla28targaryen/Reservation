@@ -13,7 +13,6 @@ class ModalSize extends React.Component {
         centered
       >
         <Modal.Header className={mod.header} closeButton>
-       
         </Modal.Header>
 
         <Modal.Body className={mod.mBody}>

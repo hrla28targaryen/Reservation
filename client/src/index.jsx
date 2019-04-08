@@ -9,6 +9,12 @@ import info from './info.scss';
 import ModalLike from './components/modalLike.jsx';
 import ModalSize from './components/modalSize.jsx';
 import ModalPro from './components/modalPro.jsx';
+import ModalDate from './components/modalDateRangePick.jsx';
+
+// import moment from 'moment';
+// import 'react-dates/initialize';
+// import { SingleDatePicker } from 'react-dates';
+// import 'react-dates/lib/css/_datepicker.css';
 
 
 class Reservation extends React.Component {
@@ -24,9 +30,13 @@ class Reservation extends React.Component {
       items: [],
       sign_in: false,
       size_table: false,
-      pro_table:false,
+      pro_table: false,
+      date_table: false,
     }
     this.fetchOne = this.fetchOne.bind(this);
+    // this.onDateChange = this.onDateChange.bind(this);
+    // this.onFocusChange = this.onFocusChange.bind(this);
+
   }
   componentDidMount() {
     this.fetchOne();
@@ -40,14 +50,23 @@ class Reservation extends React.Component {
       });
     })
   }
+
+  // onDateChange(date) {
+  //   this.setState({ date });
+  // }
+
+  // onFocusChange({ focused }) {
+  //   this.setState({ focused });
+  // }
+
   render() {
     var allSize = this.state.items.map(e => e.size);
     allSize = allSize.filter((item, idx) => allSize.indexOf(item) === idx);
-    var emptySpaces='                      ';
-    
+
     let modalClose1 = () => this.setState({ sign_in: false });
     let modalClose2 = () => this.setState({ size_table: false });
     let modalClose3 = () => this.setState({ pro_table: false });
+    let modalClose4 = () => this.setState({ date_table: false });
 
     return (
       <div className={header.pdpWide_primary}>
@@ -166,7 +185,11 @@ class Reservation extends React.Component {
 
                   <div className={inputForm.reservationDateWindow_date}>
                     <label className={inputForm.datepickerLabel} htmlFor="holdDate"></label>
-                    <input type="date" className={inputForm.datePicker} readOnly="" id="holdDate" />
+                    <input type="text" className={inputForm.datePicker} onClick={() => this.setState({ date_table: true })} />
+                    <ModalDate
+                      show={this.state.date_table}
+                      onHide={modalClose4}
+                    />
                   </div>
                   <input type="hidden" name="reservation[date]" value="" />
                 </fieldset>
@@ -248,7 +271,6 @@ class Reservation extends React.Component {
           </div>
         </div>
 
-   
       </div>
     );
   }
@@ -256,3 +278,6 @@ class Reservation extends React.Component {
 
 
 ReactDOM.render(<Reservation />, document.getElementById('Reservation'))
+
+
+
