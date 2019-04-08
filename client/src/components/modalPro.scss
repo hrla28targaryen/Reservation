@@ -1,0 +1,118 @@
+@font-face {
+  font-family: 'Engraver GT';
+  src: url('../../dist/fonts/Engravers_Gothic_Regular.otf');
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../../dist/fonts/Proxima_Nova_Reg.ttf');
+}
+
+.header {
+  height: 1px;
+  padding: 0;
+}
+.mBody {
+  margin: -30px 0 10px 0;
+  width: 450px;
+}
+.wrapper {
+  padding: 40px 20px 0 20px;
+}
+.teaser {
+  text-align: center;
+  display: block;
+}
+.teaser::before{
+  background: url(../../dist/icons/bigpro.png) no-repeat;
+  background-position: 35.1% 49.3%;
+  background-size: 79px;
+  width: 79px;
+  height: 94px;
+  content: " ";
+  display: block;
+  margin: -45px 0 20px;
+}
+.title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+  line-height: 1.2em;
+}
+.standAlone {
+  font-size: 12px;
+  font-family: 'Engraver GT';
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #333333;
+  line-height: 100%;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #333333;
+}
+.standAlone:hover {
+  text-emphasis: none;
+  text-decoration: none;
+}
+.ulcontainer {
+  display: flex;
+  list-style: none;
+  margin: 20px 0;
+}
+.list {
+  flex: 0 0 33%;
+  line-height: 1.25em;
+  position: relative;
+  display: list-item;
+  text-align: -webkit-match-parent;
+  font-size: 13px;
+}
+.listMiddle {
+  flex: 0 0 33%;
+  line-height: 1.25em;
+  position: relative;
+  border-left: 1px solid #DDDDDD;
+  display: list-item;
+  text-align: -webkit-match-parent;
+  font-size: 13px;
+}
+.emp {
+  display: block;
+  color: #4C6E6F;
+  font-family: 'Engraver GT';
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  line-height: 18px;
+  font-style: normal;
+}
+.blackbutton {
+  margin: 0 0 20px 0;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-family: 'Engraver GT';
+  font-size: 14px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 300;
+  letter-spacing: 2px;
+  line-height: 43px;
+  height: 44px;
+  padding: 0 30px;
+}
+.blackbutton:focus {
+  outline: none;
+}
+.disclaimer {
+  color: #999999;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 0;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 15px;
+  margin: 0;
+}

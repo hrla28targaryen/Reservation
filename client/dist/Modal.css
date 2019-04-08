@@ -6076,7 +6076,7 @@ a.close.disabled {
 	display: flex;
 	-ms-flex-direction: column;
 	flex-direction: column;
-    width: 660px;
+    min-width: 450px;
     padding: 30px;
 	pointer-events: auto;
 	background-color: #fff;
@@ -6132,7 +6132,7 @@ a.close.disabled {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
     margin: 0 117.5px;
-    width: 365px;
+    min-width: 365px;
 }
 
 .modal-footer {

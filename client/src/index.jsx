@@ -1,13 +1,15 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
 import ReactDOM from 'react-dom';
-import { Button, Modal, ButtonToolbar } from 'react-bootstrap';
 import $ from 'jquery';
 
 import header from './header.scss';
 import inputForm from './form.scss';
 import info from './info.scss';
-import MyVerticallyCenteredModal from './components/modalLike.jsx';
+import ModalLike from './components/modalLike.jsx';
+import ModalSize from './components/modalSize.jsx';
+import ModalPro from './components/modalPro.jsx';
+
 
 class Reservation extends React.Component {
   constructor(props) {
@@ -21,6 +23,8 @@ class Reservation extends React.Component {
       purchasePrice: 0,
       items: [],
       sign_in: false,
+      size_table: false,
+      pro_table:false,
     }
     this.fetchOne = this.fetchOne.bind(this);
   }
@@ -39,7 +43,10 @@ class Reservation extends React.Component {
   render() {
     var allSize = this.state.items.map(e => e.size);
     allSize = allSize.filter((item, idx) => allSize.indexOf(item) === idx);
-    let modalClose = () => this.setState({ sign_in: false });
+    
+    let modalClose1 = () => this.setState({ sign_in: false });
+    let modalClose2 = () => this.setState({ size_table: false });
+    let modalClose3 = () => this.setState({ pro_table: false });
 
     return (
       <div className={header.pdpWide_primary}>
@@ -50,12 +57,12 @@ class Reservation extends React.Component {
             </h1>
             <div className="pdpHeader_heart" >
               <div className={header.heart} >
-                <div className={header.heart_buttonMinimal} variant="primary" onClick={() => this.setState({ sign_in: true })} >
+                <div className={header.heart_buttonMinimal} onClick={() => this.setState({ sign_in: true })} >
                   <img className={header.like} src="./icons/like.png" />
                 </div>
-                <MyVerticallyCenteredModal
+                <ModalLike
                   show={this.state.sign_in}
-                  onHide={modalClose}
+                  onHide={modalClose1}
                 />
               </div>
             </div>
@@ -129,7 +136,11 @@ class Reservation extends React.Component {
               </div>
 
               <div className={inputForm.sizeRefTable}>
-                <button className={inputForm.sizeRefButton} type="button">SIZE &amp; FIT</button>&nbsp;
+                <div className={inputForm.sizeRefButton} onClick={() => this.setState({ size_table: true })} >SIZE &amp; FIT </div>&nbsp;
+                <ModalSize
+                  show={this.state.size_table}
+                  onHide={modalClose2}
+                />
               </div>
 
               <div className={inputForm.reservationDateDiv}>
@@ -170,7 +181,11 @@ class Reservation extends React.Component {
                     </label>
                     <label htmlFor="reservationPro" className={inputForm.proLabel}>I want free shipping &amp; insurance with PRO.
                     </label>
-                    <a className={inputForm.standAlone} >Learn More</a>
+                    <a className={inputForm.standAlone} onClick={() => this.setState({ pro_table: true })} >Learn More</a>
+                    <ModalPro
+                      show={this.state.pro_table}
+                      onHide={modalClose3}
+                    />
                   </div>
                   <div className={inputForm.labelPRO}></div>
                 </div>
@@ -201,7 +216,7 @@ class Reservation extends React.Component {
           <div className={info.productDetails}>
             <Collapsible transitionTime="10" trigger="Stylist Notes" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
-                <p>Experience this beautiful {this.state.productName.split(' ')[1]} designed by {this.state.designerName}.</p>
+                <p>Experience this wonderful {this.state.productName.split(' ')[1]} designed by {this.state.designerName}.</p>
               </div>
             </Collapsible>
 

@@ -3,7 +3,7 @@ import mod from './modalLike.scss';
 import { Button, Modal, ButtonToolbar } from 'react-bootstrap';
 
 
-class LikeModal extends React.Component {
+class ModalLike extends React.Component {
   render() {
     return (
       <Modal
@@ -27,7 +27,7 @@ class LikeModal extends React.Component {
             </div>
             <div className={mod.passForm}>
               <label htmlFor="password" className={mod.passLabel}>Create a Password</label>
-              <input type="password" id="password" name="password" className={mod.passInput}/>
+              <input type="password" className={mod.passInput}/>
             </div>
             <div className={mod.dateForm}>
               <label htmlFor="birth_month" className={mod.dateLabel} >Birthday</label>
@@ -59,7 +59,7 @@ class LikeModal extends React.Component {
   }
 }
 
-export default LikeModal;
+export default ModalLike;
 
 {/* <Modal
 {...this.props}

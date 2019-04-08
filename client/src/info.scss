@@ -72,13 +72,14 @@
 .collapsibleContent {
   font-family: 'Times New Roman', Times, serif;
   font-size: 15px;
+  margin-top: 20px;
   line-height: 22px;
   letter-spacing: 0;
   text-transform: none;
   color: #333333;
 }
 .facebook {
-  margin-top: 15px;
+  margin-top: 0px;
   height: 20px;
   float: left;
   width: 80px;
@@ -108,7 +109,7 @@
 }
 .share{
   margin-left: 5px;
-  margin-top: 15px;
+  margin-top: 0px;
   height: 20px;
   float: left;
   width: 40px;
@@ -129,7 +130,7 @@
 }
 .pinteresta {
   border-radius: 3px;
-  margin-top: 15px;
+  margin-top: 0px;
   float: left;
   margin-left: 20px;
   height: 20px;
@@ -139,4 +140,7 @@
   background-position: 50% 50%;
   outline: none;
   cursor: pointer;
+}
+.pinteresta:focus {
+  outline: none;
 }

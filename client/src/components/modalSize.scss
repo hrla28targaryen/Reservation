@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'Engraver GT';
+  src: url('../../dist/fonts/Engravers_Gothic_Regular.otf');
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../../dist/fonts/Proxima_Nova_Reg.ttf');
+}
+
+.header {
+  height: 1px;
+  padding: 0;
+}
+.title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: inherit;
+  line-height: 1.2em;
+  margin: 0 0 10px;
+  padding: 0;
+  display: block;
+  color: #333333;
+  height: 24px;
+}
+.mBody {
+  margin: 10px 15px;
+}
+.small p{
+  margin: 0;
+  padding: 0;
+  display: block;
+  font-style: normal;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  line-height: 22px;
+  font-size: 15px;
+  line-height: 20px;
+  color: #333333;
+}
+.sizeChart {
+  margin: 0 0 10px 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  padding: 0;
+  display: block;
+}
+.sizeImg {
+  background: url('../../dist/icons/Size\ Chart.png') no-repeat;
+  background-size: 533px;
+  background-position: 0% 50%;
+  height: 277px;
+  width: 720px;
+  margin-bottom: 5px;
+}
+.plusImg {
+  background: url('../../dist/icons/Plus\ Size\ Size\ Chart.png') no-repeat;
+  background-size: 663px;
+  background-position: 0% 50%;
+  height: 837px;
+  width: 720px;
+  margin-bottom: 5px;
+}
+.lengthImg {
+  background: url('../../dist/icons/Length\ Chart.png') no-repeat;
+  background-size: 533px;
+  background-position: 0% 50%;
+  height: 199px;
+  width: 720px;
+  margin-bottom: 5px;
+}
+.lengthDisclaimer {
+  font-family: 'Engraver GT';
+  font-size: 13px;
+  line-height: 18px;
+}
