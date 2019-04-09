@@ -5,6 +5,12 @@ import { forbidExtraProps } from 'airbnb-prop-types';
 import moment from 'moment';
 import omit from 'lodash/omit';
 
+import 'react-dates/initialize';
+import { DayPickerRangeController, DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+import '../calendarStyling/styl.css';
+
+
 // import DayPickerRangeController from '../../../../trial/react-dates/src/components/DayPickerRangeController';
 
 // import ScrollableOrientationShape from '../src/shapes/ScrollableOrientationShape';
@@ -110,11 +116,16 @@ class DayPickerRangeControllerWrapper extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   focusedInput: props.autoFocusEndDate ? END_DATE : START_DATE,
-    //   startDate: props.initialStartDate,
-    //   endDate: props.initialEndDate,
-    // };
+    this.state = {
+      // focusedInput: props.autoFocusEndDate ? END_DATE : START_DATE,
+      // startDate: props.initialStartDate,
+      // endDate: props.initialEndDate,
+      startDate: null,
+      endDate: null,
+      focusedInput: null,
+    };
+    // this.onDateChange = this.onDateChange.bind(this);
+    // this.onFocusChange = this.onFocusChange.bind(this);
 
     // this.onDatesChange = this.onDatesChange.bind(this);
     // this.onFocusChange = this.onFocusChange.bind(this);
@@ -131,7 +142,17 @@ class DayPickerRangeControllerWrapper extends React.Component {
   //   });
   // }
 
+  // onDateChange(date) {
+  //   this.setState({ date });
+  // }
+
+  // onFocusChange({ focused }) {
+  //   this.setState({ focused });
+  // }
   render() {
+    const { focused, date } = this.state;
+
+
     // const { showInputs } = this.props;
     // const { focusedInput, startDate, endDate } = this.state;
 
@@ -155,7 +176,7 @@ class DayPickerRangeControllerWrapper extends React.Component {
       >
         <Modal.Header closeButton>
           <Modal.Title className={mod.title}>
-            </Modal.Title>
+          </Modal.Title>
         </Modal.Header>
 
         <Modal.Body >
@@ -175,7 +196,18 @@ class DayPickerRangeControllerWrapper extends React.Component {
               startDate={startDate}
               endDate={endDate}
             /> */}
-            Hello
+            <DateRangePicker
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+              focusedInput={this.state.focusedInput}
+              onFocusChange={focusedInput => this.setState({ focusedInput })}
+              numberOfMonths={1}
+              hideKeyboardShortcutsPanel
+              // withPortal
+              enableOutsideDays
+              showDefaultInputIcon
+            />
           </div>
         </Modal.Body>
 

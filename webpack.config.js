@@ -16,24 +16,24 @@ module.exports = {
         },
       },
 
-      // {
-      //   test: /node_modules\/.*\.s?css$/,
-      //   use: [
-      //     {
-      //       loader: 'style-loader',
-      //     },
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         sourceMap: true,
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        test: /node_modules\/.*\.s?css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
 
       {
         test: /\.s?css$/,
-        // exclude: /node_modules/,
+        exclude: /node_modules/,
         loader: combinedLoaders([
          {
            loader: 'style-loader'

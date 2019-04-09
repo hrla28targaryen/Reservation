@@ -186,15 +186,15 @@
   margin-bottom: 7px;
 }
 .datePicker {
-  width: 98%;
-  background-image: url(../dist/icons/calendar.png) ;
-  background-size: 28px;
-  background-repeat: no-repeat;
-  background-position: 95% 52%;
-  background-attachment: fixed;
-  background-attachment: scroll;
-  -webkit-animation: none;
-  -webkit-appearance: none;
+  width: 98% !important;
+  background-image: url(../dist/icons/calendar.png)  !important;
+  background-size: 28px !important;
+  background-repeat: no-repeat !important;
+  background-position: 95% 52% !important;
+  background-attachment: fixed !important;
+  background-attachment: scroll !important;
+  -webkit-animation: none !important;
+  -webkit-appearance: none !important;
 }
 
 .ctaContainer {

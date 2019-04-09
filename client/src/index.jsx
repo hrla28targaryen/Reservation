@@ -9,12 +9,9 @@ import info from './info.scss';
 import ModalLike from './components/modalLike.jsx';
 import ModalSize from './components/modalSize.jsx';
 import ModalPro from './components/modalPro.jsx';
-import ModalDate from './components/modalDateRangePick.jsx';
-
-// import moment from 'moment';
-// import 'react-dates/initialize';
-// import { SingleDatePicker } from 'react-dates';
-// import 'react-dates/lib/css/_datepicker.css';
+import 'react-dates/initialize';
+import { DayPickerRangeController, DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 
 
 class Reservation extends React.Component {
@@ -31,11 +28,12 @@ class Reservation extends React.Component {
       sign_in: false,
       size_table: false,
       pro_table: false,
-      date_table: false,
+      // date_table: false,
+      startDate: null,
+      endDate: null,
+      focusedInput: null,
     }
     this.fetchOne = this.fetchOne.bind(this);
-    // this.onDateChange = this.onDateChange.bind(this);
-    // this.onFocusChange = this.onFocusChange.bind(this);
 
   }
   componentDidMount() {
@@ -51,13 +49,6 @@ class Reservation extends React.Component {
     })
   }
 
-  // onDateChange(date) {
-  //   this.setState({ date });
-  // }
-
-  // onFocusChange({ focused }) {
-  //   this.setState({ focused });
-  // }
 
   render() {
     var allSize = this.state.items.map(e => e.size);
@@ -68,8 +59,12 @@ class Reservation extends React.Component {
     let modalClose3 = () => this.setState({ pro_table: false });
     let modalClose4 = () => this.setState({ date_table: false });
 
+    const { focused, date } = this.state;
+
     return (
       <div className={header.pdpWide_primary}>
+
+
         <div id="1header">
           <div className={header.pdpHeader_infoTop} >
             <h1 className={header.h3} >
@@ -185,11 +180,28 @@ class Reservation extends React.Component {
 
                   <div className={inputForm.reservationDateWindow_date}>
                     <label className={inputForm.datepickerLabel} htmlFor="holdDate"></label>
-                    <input type="text" className={inputForm.datePicker} onClick={() => this.setState({ date_table: true })} />
-                    <ModalDate
-                      show={this.state.date_table}
-                      onHide={modalClose4}
+                    {/* <input type="text" className={inputForm.datePicker} onClick={() => this.setState({ date_table: true })} /> */}
+                    <DateRangePicker
+                      startDate={this.state.startDate}
+                      endDate={this.state.endDate}
+                      onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                      focusedInput={this.state.focusedInput}
+                      onFocusChange={focusedInput => this.setState({ focusedInput })}
+                      numberOfMonths={1}
+                      hideKeyboardShortcutsPanel
+                      // withPortal
+                      enableOutsideDays
+                      displayFormat="ddd M/DD"
+                      customInputIcon={<img src={require('../dist/icons/calendar.png')} width={25} height={25} />}
+                      inputIconPosition="after"
+                      customArrowIcon={<p>_</p>}
+                      small
+                      withPortal
+                      calendarInfoPosition="top"
+                      renderCalendarInfo={()=><div><div className="closeButton">x</div><center className="calendarInfo">Pick a delivery date 1–2 days before your event</center></div>}
+                      transitionDuration={0}
                     />
+
                   </div>
                   <input type="hidden" name="reservation[date]" value="" />
                 </fieldset>

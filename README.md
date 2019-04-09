@@ -1,20 +1,29 @@
 # Reservation Module
 
-### Intorduction
-This module is an exercise using React, Express, and MongoDB
+### Introduction
+Reservation section of RentTheRunway, built in React with styling in SASS and CSS Modules
 
-### How to start
-npm install
+## Table of Contents
+
+1. [How to start](#How_to_start)
+1. [Optional dependencies used](#Optional_dependencies_used)
+1. [Other related components](#Other_related_components)
+
+
+## How to start
+```sh
+mpm install
 npm run build
-Visit http://localhost:3001/
+visit http://localhost:3001/
+```
 
-### Major dependencies being learnt from this project:
+## Optional dependencies used:
 1. React Collapsible - for dropdown
 2. React Bootstrap - for modal effects
-3. React Date - for dates range control (still working on it)
+3. React Date - for dates range control
 4. SCSS
 
-### Other related components
+## Other related components
 1. https://github.com/hrla28targaryen/rentTheRunwayNavBar
 2. https://github.com/hrla28targaryen/rentTheRunwayReviewsService
 3. https://github.com/hrla28targaryen/reviewsServiceProxyServer
