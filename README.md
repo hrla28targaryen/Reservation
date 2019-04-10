@@ -11,9 +11,13 @@ Reservation section of RentTheRunway, built in React with styling in SASS and CS
 
 
 ## How to start
+*
+*On terminal, execute this command from the root directory
+*
 ```sh
 mpm install
 npm run build
+node db/seed.js
 visit http://localhost:3001/
 ```
 
