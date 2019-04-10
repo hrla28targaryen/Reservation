@@ -11,9 +11,9 @@ Reservation section of RentTheRunway, built in React with styling in SASS and CS
 
 
 ## How to start
-*
-*On terminal, execute this command from the root directory
-*
+* 
+* On terminal, execute this command from the root directory
+* 
 ```sh
 mpm install
 npm run build
