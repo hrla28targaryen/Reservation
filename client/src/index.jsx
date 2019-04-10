@@ -46,7 +46,15 @@ class Reservation extends React.Component {
     this.fetchOne();
   }
   fetchOne() {
-    let rand = `HRLA${String(Math.floor(Math.random() * 100)).padStart(3, 0)}`
+    let rand = `HRLA`;
+    var i = Math.floor(Math.random() * 100);
+    if (i.toString().length === 1) {
+      rand += '00' + i.toString();
+    } else if (i.toString().length === 2) {
+      rand += '0' + i.toString();
+    } else if (i.toString().length === 3) {
+      rand += i.toString();
+    }
     $.get(`/api/${rand}`, data => {
       var { productID, productName, designerName, facebook, rentPrice, purchasePrice, items } = data;
       this.setState({
@@ -139,7 +147,7 @@ class Reservation extends React.Component {
             <div className="pdpHeader_heart" >
               <div className={header.heart} >
                 <div className={header.heart_buttonMinimal} onClick={() => this.setState({ sign_in: true })} >
-                  <img className={header.like} src="./icons/like.png" />
+                  <img className={header.like} src="https://s3.amazonaws.com/hrla28renttherunway/icons/like.png" />
                 </div>
                 <ModalLike
                   show={this.state.sign_in}
@@ -311,25 +319,25 @@ class Reservation extends React.Component {
           </div>
 
           <div className={info.productDetails}>
-            <Collapsible transitionTime="10" trigger="Stylist Notes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime="10" trigger="Stylist Notes" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>Experience this wonderful {this.state.productName.split(' ')[1]} designed by {this.state.designerName}.</p>
               </div>
             </Collapsible>
 
-            <Collapsible transitionTime="10" trigger="SIZE &amp; FIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime="10" trigger="SIZE &amp; FIT" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>Size available from {String(allSize[0]).split(',')[0]} to {String(allSize[0]).split(',')[0] === String(allSize[allSize.length - 1]).split(',')[0] ? String(allSize[allSize.length - 2]).split(',')[0] : String(allSize[allSize.length - 1]).split(',')[0]}</p>
               </div>
             </Collapsible>
 
-            <Collapsible transitionTime="10" trigger="Product Details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime="10" trigger="Product Details" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>{this.state.productName.split(' ')[0]}. See size and fit tab for length. Imported.</p>
               </div>
             </Collapsible>
 
-            <Collapsible transitionTime="10" trigger="Share&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime="10" trigger="Share" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <div className={info.facebook}>
                   <button> <div> </div><b>Like</b> {this.state.facebook}</button>
@@ -349,7 +357,7 @@ class Reservation extends React.Component {
   }
 };
 
-
+//window.Reservation = Reservation;
 ReactDOM.render(<Reservation />, document.getElementById('Reservation'))
 
 

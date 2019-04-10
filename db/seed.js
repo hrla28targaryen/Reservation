@@ -58,7 +58,14 @@ const cataPool = [
 ];
 
 for (let i = 1; i <= 100; i++) {
-  var productID = 'HRLA' + String(i).padStart(3, 0);
+  let productID = 'HRLA';
+  if (i.toString().length === 1) {
+      productID += '00' + i.toString();
+  } else if (i.toString().length === 2) {
+      productID += '0' + i.toString();
+  } else if (i.toString().length === 3) {
+      productID += i.toString();
+  }
   var productName = `${itemNamePool[Math.floor(Math.random() * itemNamePool.length)]} ${cataPool[Math.floor(Math.random() * cataPool.length)]}`;
   var designerName = `${designerPool[Math.floor(Math.random() * designerPool.length)]}`;
   var facebook = Math.floor(Math.random() * 1000);
@@ -87,7 +94,20 @@ for (let i = 1; i <= 100; i++) {
       size = size + `, ${lengthPool[randL]}`
     }
 
-    var itemID = 'A' + String(k).padStart(5, 0); k++;
+    var itemID = 'A';
+    if (i.toString().length === 1) {
+      itemID += '0000' + k.toString();
+    } else if (k.toString().length === 2) {
+      itemID += '000' + k.toString();
+    } else if (k.toString().length === 3) {
+      itemID += '00' + k.toString();
+    } else if (k.toString().length === 4) {
+      itemID += '0' + k.toString();
+    } else if (k.toString().length === 5) {
+      itemID += k.toString();
+    }
+
+    k++;
 
     var availableDate = [];
     var tomorrow = new Date('2019-3-29');
