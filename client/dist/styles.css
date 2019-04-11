@@ -5,7 +5,7 @@
   cursor: pointer;
   display: block;
   text-transform: uppercase;
-  font-family: Engravers GT, serif;
+  font-family: EngraversGothic BT, serif;
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 2px;
@@ -30,10 +30,7 @@ u {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 50px;
   font-weight: 100;
-  margin-right: 7px;
 }
-
-
 
 .DateRangePicker {
   width: 100% !important;
@@ -67,6 +64,7 @@ u {
 .DateInput_input__small{
   padding: 0 !important;
 }
+
 .DateInput_input::placeholder {
   font-weight: 200 !important;
   font-size: 16px !important;
@@ -74,9 +72,10 @@ u {
 }
 .DateInput {
   width: 42% !important;
+  padding: 0 !important;
 }
 .DateRangePickerInput {
-  width: 99% !important;
+  width: 99.5% !important;
   height: 44px !important;
   line-height: 30px !important;
   padding: 5px 0 5px 10px !important;
