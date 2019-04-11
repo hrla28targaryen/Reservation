@@ -62,7 +62,7 @@ section {
 	display: block
 }
 
-body {
+/* body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	font-size: 1rem;
@@ -96,7 +96,7 @@ h6 {
 p {
 	margin-top: 0;
 	margin-bottom: 1rem
-}
+} */
 
 abbr[data-original-title],
 abbr[title] {
@@ -10315,7 +10315,8 @@ a.text-dark:hover {
 		size: a3
 	}
 	body {
-		min-width: 992px!important
+		min-width: 992px!
+		
 	}
 	.container {
 		min-width: 992px!important
