@@ -43,6 +43,7 @@ class Reservation extends React.Component {
   }
 
   componentDidMount() {
+    console.log('COMPONENT DID MOUNT!');
     this.fetchOne();
   }
   fetchOne() {
@@ -55,7 +56,7 @@ class Reservation extends React.Component {
     } else if (i.toString().length === 3) {
       rand += i.toString();
     }
-    $.get(`/api/${rand}`, data => {
+    $.get(`/api/${rand}`, (data) => {
       var { productID, productName, designerName, facebook, rentPrice, purchasePrice, items } = data;
       this.setState({
         productID, productName, designerName, facebook, rentPrice, purchasePrice, items
@@ -258,7 +259,7 @@ class Reservation extends React.Component {
                       hideKeyboardShortcutsPanel
                       enableOutsideDays
                       displayFormat="ddd M/DD"
-                      customInputIcon={<img src={require('../dist/icons/calendar.png')} width={25} height={25} />}
+                      customInputIcon={<img src='https://s3.amazonaws.com/hrla28renttherunway/icons/calendar.png' width={25} height={25} />}
                       inputIconPosition="after"
                       customArrowIcon={<p>_</p>}
                       small
