@@ -17,7 +17,6 @@
     margin-right: 25%;
   }
   .pdpHeader_infoTop {
-    margin-top: -1.2em;
   }
 }
 // =============
@@ -144,7 +143,8 @@
   height: 100%;
   cursor: pointer;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 100;
   line-height: 22px;
   letter-spacing: 0;
   text-transform: none;
@@ -158,17 +158,17 @@
   top: 100%;
   left: 49%;
   border-style: outset;
-  border-width: 10px;
+  border-width: 9px;
   border-style: solid;
   border-color: #333333 transparent transparent transparent;
 }
 .tooltiptext::after {
   content: "";
   position: absolute;
-  top: 100%;
-  left: 49.5%;
+  top: 99.1%;
+  left: 49%;
   border-style: outset;
-  border-width: 8px;
+  border-width: 9px;
   border-style: solid;
   border-color: white transparent transparent transparent;
 }

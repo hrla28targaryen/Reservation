@@ -150,6 +150,7 @@ class Reservation extends React.Component {
                   <img className={header.like} src="https://s3.amazonaws.com/hrla28renttherunway/icons/like.png" />
                 </div>
                 <ModalLike
+                  className="modalLike"
                   show={this.state.sign_in}
                   onHide={modalClose1}
                 />
@@ -209,7 +210,7 @@ class Reservation extends React.Component {
 
                 <div className={inputForm.sizebackup}>
                   <label className={inputForm.rentableForm} htmlFor="product-primary-size">FREE BACKUP SIZE</label>
-                  <select id="product-primary-size" className={inputForm.rentableSize}>
+                  <select id="product-secondary-size" className={inputForm.rentableSize}>
                     <option label="Select">Select</option>
                     {allSize.map((e, idx) => (
                       <option key={idx} value={e} label={e}></option>
@@ -221,6 +222,7 @@ class Reservation extends React.Component {
               <div className={inputForm.sizeRefTable}>
                 <div className={inputForm.sizeRefButton} onClick={() => this.setState({ size_table: true })} >SIZE &amp; FIT </div>&nbsp;
                 <ModalSize
+                  className="modalSizeTable"
                   show={this.state.size_table}
                   onHide={modalClose2}
                 />
@@ -290,6 +292,7 @@ class Reservation extends React.Component {
                     </label>
                     <a className={inputForm.standAlone} onClick={() => this.setState({ pro_table: true })} >Learn More</a>
                     <ModalPro
+                      className="modalPro"
                       show={this.state.pro_table}
                       onHide={modalClose3}
                     />

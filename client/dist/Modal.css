@@ -6076,14 +6076,24 @@ a.close.disabled {
 	display: flex;
 	-ms-flex-direction: column;
 	flex-direction: column;
-    min-width: 450px;
-    padding: 30px;
+    padding: 0 0 30px 30px;
 	pointer-events: auto;
 	background-color: #fff;
 	background-clip: padding-box;
 	/* border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: .3rem; */
 	outline: 0
+}
+.modalLike .modal-content {
+	width: 660px;
+	left: 10%;
+}
+.modalSizeTable .modal-content {
+    width: 800px;
+}
+.modalPro .modal-content {
+	width: 500px;
+	left: 20%;
 }
 
 .modal-backdrop {
