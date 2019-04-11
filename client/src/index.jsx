@@ -43,7 +43,6 @@ class Reservation extends React.Component {
   }
 
   componentDidMount() {
-    console.log('COMPONENT DID MOUNT!');
     this.fetchOne();
   }
   fetchOne() {
@@ -203,7 +202,7 @@ class Reservation extends React.Component {
                   <select id="product-primary-size" className={inputForm.rentableSize}>
                     <option label="Select">Select</option>
                     {allSize.map((e, idx) => (
-                      <option value={e} label={e}>{e}</option>
+                      <option key={idx} value={e} label={e}>{e}</option>
                     ))}
                   </select>
                 </div>
@@ -213,7 +212,7 @@ class Reservation extends React.Component {
                   <select id="product-primary-size" className={inputForm.rentableSize}>
                     <option label="Select">Select</option>
                     {allSize.map((e, idx) => (
-                      <option value={e} label={e}></option>
+                      <option key={idx} value={e} label={e}></option>
                     ))}
                   </select>
                 </div>
@@ -271,6 +270,8 @@ class Reservation extends React.Component {
                       endDateOffset={day => day.clone().add(this.state.dateSpan, "d")}
                       isOutsideRange={(day) => day.isBefore(moment()) || day.isAfter(moment().add(90, 'days'))}
                       onPrevMonthClick={this.onPrevMonthClick}
+                      endDateId="123"
+                      startDateId="abc"
                     />
                   </div>
                   <input type="hidden" name="reservation[date]" value="" />
@@ -320,25 +321,25 @@ class Reservation extends React.Component {
           </div>
 
           <div className={info.productDetails}>
-            <Collapsible transitionTime="10" trigger="Stylist Notes" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime={10} trigger="Stylist Notes" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>Experience this wonderful {this.state.productName.split(' ')[1]} designed by {this.state.designerName}.</p>
               </div>
             </Collapsible>
 
-            <Collapsible transitionTime="10" trigger="SIZE &amp; FIT" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime={10} trigger="SIZE &amp; FIT" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>Size available from {String(allSize[0]).split(',')[0]} to {String(allSize[0]).split(',')[0] === String(allSize[allSize.length - 1]).split(',')[0] ? String(allSize[allSize.length - 2]).split(',')[0] : String(allSize[allSize.length - 1]).split(',')[0]}</p>
               </div>
             </Collapsible>
 
-            <Collapsible transitionTime="10" trigger="Product Details" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime={10} trigger="Product Details" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <p>{this.state.productName.split(' ')[0]}. See size and fit tab for length. Imported.</p>
               </div>
             </Collapsible>
 
-            <Collapsible transitionTime="10" trigger="Share" className={info.collapsibleTitle}  >
+            <Collapsible transitionTime={10} trigger="Share" className={info.collapsibleTitle}  >
               <div className={info.collapsibleContent}>
                 <div className={info.facebook}>
                   <button> <div> </div><b>Like</b> {this.state.facebook}</button>
