@@ -1,18 +1,28 @@
+@font-face {
+  font-family: 'EngraversGothic BT';
+  src: url('./fonts/Engravers_Gothic_Regular.otf');
+}
+
 .Collapsible {
   border-bottom: 1px solid #DDDDDD;
   padding: 15px 0;
   border: 0;
-  cursor: pointer;
+  cursor: auto;
   display: block;
-  text-transform: uppercase;
-  font-family: EngraversGothic BT, serif;
-  text-transform: uppercase;
+  font-family: 'EngraversGothic BT';
   font-size: 12px;
   letter-spacing: 2px;
   line-height: 18px;
   color: #999999;
   transition: none;
   border-bottom: 1px solid #DDDDDD;
+  text-transform: uppercase;
+}
+.Collapsible span{
+  font-family: 'EngraversGothic BT';
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
 }
 .Collapsible span:after {
   content: "\2212";
@@ -22,16 +32,52 @@
   float: right;
   transition: none;
 }
+#app .Collapsible {
+  padding: 15px 0;
+  border: 0;
+  display: inline;
+  text-transform: none;
+  font-family: 'Proxima Nova Regular';
+  font-size: 12px;
+  letter-spacing: 2px;
+  line-height: 18px;
+  color: black;
+  transition: none;
+  cursor: auto;
+}
+#app .Collapsible__trigger {
+  cursor: pointer;
+  border: 0;
+  margin-left: 5px;
+  text-transform: none;
+  letter-spacing: 0;
+  display: inline;
+  font-family: 'Proxima Nova Regular';
+  font-size: 12px;
+  line-height: 18px;
+  text-decoration: underline;
+  /* background-color: blue; */
+}
+#app span:after {
+  content: "";
+}
 u {
   cursor: pointer;
 }
+
+
+
+
+
 
 .close span {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 50px;
   font-weight: 100;
 }
-
+.DateRangePicker_picker {
+  z-index: 100 !important;
+}
 .DateRangePicker {
   width: 100% !important;
   height: 32px !important;
@@ -238,5 +284,8 @@ li.DayPicker_weekHeader_li {
   background-size: 10px !important;
 }
 .CalendarDay__selected_start:focus{
+  outline: none !important;
+}
+.DayPickerNavigation_button:focus {
   outline: none !important;
 }

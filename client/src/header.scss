@@ -54,9 +54,9 @@
 .like {
   width: 22px;
   height: 18px;
-  display: inline-block;
-  margin-right: 1ex;
-  vertical-align: middle;
+  float: right;
+  display: block;
+  margin-top: 20px;
 }
 
 .pdpHeader_displayName {
