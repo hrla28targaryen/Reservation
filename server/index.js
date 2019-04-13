@@ -12,11 +12,11 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use('/', express.static(path.join(__dirname, '../client/dist/')))
 
-server.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// server.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 router.route('/') // find ALL products & items =================
 .get((req, res) => {
@@ -59,16 +59,16 @@ router.route('/:productID') // find one by productID
 })
 
 
-// router.route('/:productID/:size/:availableDate') // MASTER PIECE
-// .get((req, res) => {
-//     req.params.availableDate = req.params.availableDate.split('&');
-//     let {availableDate, size, productID} = req.params
-//     Product.findOne().all('availableDate', availableDate).where({size, productID})
-//       .then(data => res.status(200).send(data))
-//       .catch(err => console.log('error from post ', err));
-//     // res.status(203).send('hello from put');
-// })
+router.route('/:productID/:size/:availableDate') // MASTER PIECE
+.get((req, res) => {
+    req.params.availableDate = req.params.availableDate.split('&');
+    let {availableDate, size, productID} = req.params
+    Product.findOne().all('availableDate', availableDate).where({size, productID})
+      .then(data => res.status(200).send(data))
+      .catch(err => console.log('error from post ', err));
+    // res.status(203).send('hello from put');
+})
 
-server.use('/api', router);
+server.use('/api/reservation', router);
 
 server.listen(PORT, ()=>console.log(`listening to port: ${PORT} , great!`));
