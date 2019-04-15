@@ -59,15 +59,15 @@ router.route('/:productID') // find one by productID
 })
 
 
-router.route('/:productID/:size/:availableDate') // MASTER PIECE
-.get((req, res) => {
-    req.params.availableDate = req.params.availableDate.split('&');
-    let {availableDate, size, productID} = req.params
-    Product.findOne().all('availableDate', availableDate).where({size, productID})
-      .then(data => res.status(200).send(data))
-      .catch(err => console.log('error from post ', err));
-    // res.status(203).send('hello from put');
-})
+// router.route('/:productID/:size/:availableDate') // MASTER PIECE
+// .get((req, res) => {
+//     req.params.availableDate = req.params.availableDate.split('&');
+//     let {availableDate, size, productID} = req.params
+//     Product.findOne().all('availableDate', availableDate).where({size, productID})
+//       .then(data => res.status(200).send(data))
+//       .catch(err => console.log('error from post ', err));
+//     // res.status(203).send('hello from put');
+// })
 
 server.use('/api/reservation', router);
 

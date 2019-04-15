@@ -59,13 +59,7 @@ const cataPool = [
 
 for (let i = 1; i <= 100; i++) {
   let productID = 'HRLA';
-  if (i.toString().length === 1) {
-      productID += '00' + i.toString();
-  } else if (i.toString().length === 2) {
-      productID += '0' + i.toString();
-  } else if (i.toString().length === 3) {
-      productID += i.toString();
-  }
+  productID += String(i).padStart(3,"0");
   var productName = `${itemNamePool[Math.floor(Math.random() * itemNamePool.length)]} ${cataPool[Math.floor(Math.random() * cataPool.length)]}`;
   var designerName = `${designerPool[Math.floor(Math.random() * designerPool.length)]}`;
   var facebook = Math.floor(Math.random() * 1000);
@@ -95,31 +89,32 @@ for (let i = 1; i <= 100; i++) {
     }
 
     var itemID = 'A';
-    if (i.toString().length === 1) {
-      itemID += '0000' + k.toString();
-    } else if (k.toString().length === 2) {
-      itemID += '000' + k.toString();
-    } else if (k.toString().length === 3) {
-      itemID += '00' + k.toString();
-    } else if (k.toString().length === 4) {
-      itemID += '0' + k.toString();
-    } else if (k.toString().length === 5) {
-      itemID += k.toString();
+    itemID += String(j).padStart(5, "0");
+    
+    // creating bookedDate randomly
+    var bookedDate = [];
+    function randomDate(start, end) {
+      let one = new Date( start.getTime() + Math.random() * (end.getTime() - start.getTime()) );
+      if (one.getDay() === 0) {
+        one = new Date(one.getTime() + 86400000);
+      } else if (one.getDay() === 4) {
+        one = new Date(one.getTime() - 86400000);
+      }
+      let two = new Date(one.getTime() + 86400000);
+      let three = new Date(one.getTime() + 2*86400000);
+      let four = new Date(one.getTime() + 3*86400000);
+      return [one, two, three, four];
     }
-
-    k++;
-
-    var availableDate = [];
-    var tomorrow = new Date('2019-3-29');
-    availableDate.push(tomorrow);
-    var later = new Date('2019-7-28');
-    availableDate.push(later);
+    var timesBooked = 2 + Math.round(Math.random() * 4);
+    var dateArr = [];
+    for (let k=0; k<timesBooked; k++) {
+      dateArr.push(...randomDate(new Date("2019-4-13"), new Date("2019-8-10")));
+    }
+    bookedDate = [...new Set(dateArr)];;
     // diff between later & tomorrow is 10454400000
     // console.log(new Intl.DateTimeFormat().format(tomorrow.setDate(tomorrow.getDate() + 1)))
-
-    items.push({ itemID, size, availableDate });
-
-
+    
+    items.push({ itemID, size, bookedDate });
   }
 
   let prod = new Product({
@@ -134,7 +129,10 @@ for (let i = 1; i <= 100; i++) {
   prod.save()
     .then(() => {
       Product.findOne({ productID: productID }) // just to see if the prod above is saved
-        .then(productWithComments => console.log(productWithComments.items.length))
+        .then(productWithComments => {
+          console.log(productID," has been created");
+          mongoose.connection.close();
+        })
     })
     .catch(err => console.log(err));
   // seedData.push(productID, productName, designerName, facebook, items);

@@ -27,6 +27,7 @@ class Reservation extends React.Component {
       rentPrice: 0,
       purchasePrice: 0,
       items: [],
+      bookedDate: [],
       // below for modal
       sign_in: false,
       size_table: false,
@@ -34,12 +35,14 @@ class Reservation extends React.Component {
       //below for calendar
       startDate: null,
       endDate: null,
+      stringDateRange:"",
       focusedInput: null,
       dateSpan: 3,
     }
     this.fetchOne = this.fetchOne.bind(this);
     this.onDatesChange = this.onDatesChange.bind(this);
     this.dateSpanChange = this.dateSpanChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -47,31 +50,58 @@ class Reservation extends React.Component {
   }
   fetchOne() {
     let rand = `HRLA`;
-    var i = Math.floor(Math.random() * 100);
-    if (i.toString().length === 1) {
-      rand += '00' + i.toString();
-    } else if (i.toString().length === 2) {
-      rand += '0' + i.toString();
-    } else if (i.toString().length === 3) {
-      rand += i.toString();
-    }
-    $.get(`/api/${rand}`, (data) => {
+    var i = String(Math.floor(Math.random() * 100));
+    rand += i.padStart(3,"0");
+    var tempItems = {};
+    $.get(`/api/reservation/${rand}`, (data) => {
       var { productID, productName, designerName, facebook, rentPrice, purchasePrice, items } = data;
+      
+      for (let i=0; i<items.length; i++) {
+        if (!Object.keys(tempItems).includes(items[i].size)) {
+          tempItems[items[i].size] = items[i].bookedDate;
+        } else {
+          var pivotDate = [];
+          for ( let date of items[i].bookedDate ) {
+            if (tempItems[items[i].size].includes(date)) {
+              pivotDate.push(date)
+            }
+          }
+          tempItems[items[i].size] = pivotDate;
+        }
+      }
+      var filteredArr = [];
+      for (let key in tempItems) {
+        let tempObj = {};
+        tempObj.size = key;
+        tempObj.bookedDate = tempItems[key];
+        filteredArr.push(tempObj)
+      }
       this.setState({
-        productID, productName, designerName, facebook, rentPrice, purchasePrice, items
+        productID, productName, designerName, facebook, rentPrice, purchasePrice, items: filteredArr
       });
     })
   }
 
   onDatesChange({ startDate, endDate }) {
     this.setState({ startDate });
-    var abc = moment(startDate._d);
-    abc.add(this.state.dateSpan, 'd'); delete abc._i;
-    this.setState({ endDate: abc })
+    this.setState({ endDate });
+    let str = `${moment(startDate).format('ddd M/DD')} - ${moment(endDate).format('ddd M/DD')}`;
+    this.setState({stringDateRange: str});
   }
 
   dateSpanChange(val) {
     this.setState({ dateSpan: val });
+  }
+
+  handleChange(event) {
+    let dateArray1 = event.target.value.split(',');
+    let dateArray = [];
+    for (let d of dateArray1) {
+      dateArray.push(moment(d));
+    }
+    this.setState({
+      bookedDate: dateArray
+    })
   }
 
 
@@ -97,12 +127,13 @@ class Reservation extends React.Component {
       holiday.push(current.clone());
     }
     holiday.push(memorialDay, independenceDay);
+    holiday.push(...this.state.bookedDate);
     holiday.map(m => m.format('LLLL'));
 
-    // nextWeek date for pricing schema ======================
-    var nextWeek = moment().add(7, 'days');
+    // nextTwoWeeks date for pricing schema ======================
+    var nextTwoWeeks = moment().add(14, 'days');
 
-    // pricing schema shown is based on selected date & date span
+    // pricing schema displayed is based on selected date & date span
     if (!this.state.startDate) {
       if (this.state.dateSpan === 3) {
         var priceTag = (<span className={header.productPriceOriginal} >
@@ -115,7 +146,7 @@ class Reservation extends React.Component {
       }
     } else {
       if (this.state.dateSpan === 3) {
-        if (this.state.startDate.isBefore(nextWeek) ) {
+        if (this.state.startDate.isBefore(nextTwoWeeks) ) {
           var priceTag = (<span className={header.productPriceOriginal} >
             ${Math.round(Number(this.state.rentPrice * 1.25))}
           </span>);
@@ -125,7 +156,7 @@ class Reservation extends React.Component {
           </span>);
         }
       } else {
-        if (this.state.startDate.isBefore(nextWeek) ) {
+        if (this.state.startDate.isBefore(nextTwoWeeks) ) {
           var priceTag = (<span className={header.productPriceOriginal} >
             ${Math.round(Number(this.state.rentPrice * 1.6 *1.25))}
           </span>);
@@ -147,7 +178,7 @@ class Reservation extends React.Component {
             <div className="pdpHeader_heart" >
               <div className={header.heart} >
                 <div className={header.heart_buttonMinimal} onClick={() => this.setState({ sign_in: true })} >
-                  <img className={header.like} src="https://s3.amazonaws.com/hrla28renttherunway/icons/like.png" />
+                  <img className={header.like} src="https://s3.amazonaws.com/renttherunwayhrla28/icons/like.png" />
                 </div>
                 <ModalLike
                   className="modalLike"
@@ -200,10 +231,10 @@ class Reservation extends React.Component {
               <div>
                 <div className={inputForm.size}>
                   <label className={inputForm.rentableForm} htmlFor="product-primary-size">Size</label>
-                  <select id="product-primary-size" className={inputForm.rentableSize}>
+                  <select id="product-primary-size" className={inputForm.rentableSize} onChange={this.handleChange}>
                     <option label="Select">Select</option>
-                    {allSize.map((e, idx) => (
-                      <option key={idx} value={e} label={e}>{e}</option>
+                    {this.state.items.map((e, idx) => (
+                      <option key={idx} value={e.bookedDate} label={e.size}></option>
                     ))}
                   </select>
                 </div>
@@ -249,6 +280,7 @@ class Reservation extends React.Component {
                   </div>
 
                   <div className={inputForm.reservationDateWindow_date}>
+                    {/* <input readOnly style={{opacity:0}} type="text" value={this.state.stringDateRange} /> */}
                     <label className={inputForm.datepickerLabel} htmlFor="holdDate"></label>
                     <DateRangePicker
                       startDate={this.state.startDate}
@@ -260,17 +292,18 @@ class Reservation extends React.Component {
                       hideKeyboardShortcutsPanel
                       enableOutsideDays
                       displayFormat="ddd M/DD"
-                      customInputIcon={<img src='https://s3.amazonaws.com/hrla28renttherunway/icons/calendar.png' width={25} height={25} />}
+                      customInputIcon={<img src='https://s3.amazonaws.com/renttherunwayhrla28/icons/calendar.png' width={25} height={25} />}
                       inputIconPosition="after"
-                      customArrowIcon={<p>_</p>}
+                      customArrowIcon={<p>&nbsp;</p>}
                       small
                       withPortal
                       calendarInfoPosition="top"
-                      renderCalendarInfo={() => <div><div className="closeButton">x</div><center className="calendarInfo">Pick a delivery date 1–2 days before your event</center></div>}
                       transitionDuration={0}
+                      renderCalendarInfo={() => <div><div className="closeButton">x</div><center className="calendarInfo">Pick a delivery date 1–2 days before your event</center></div>}
                       isDayBlocked={day => holiday.filter(d => d.isSame(day, 'day')).length > 0}
                       endDateOffset={day => day.clone().add(this.state.dateSpan, "d")}
-                      isOutsideRange={(day) => day.isBefore(moment()) || day.isAfter(moment().add(90, 'days'))}
+                      isOutsideRange={day => day.isBefore(moment()) || day.isAfter(moment().add(120, 'days'))}
+                      isDayHighlighted={day => this.state.bookedDate.filter(d => d.isSame(day, 'day')).length > 0}
                       onPrevMonthClick={this.onPrevMonthClick}
                       endDateId="123"
                       startDateId="abc"
@@ -364,6 +397,3 @@ class Reservation extends React.Component {
 
 //window.Reservation = Reservation;
 ReactDOM.render(<Reservation />, document.getElementById('Reservation'))
-
-
-

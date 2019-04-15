@@ -2,7 +2,6 @@
   font-family: 'EngraversGothic BT';
   src: url('./fonts/Engravers_Gothic_Regular.otf');
 }
-
 .Collapsible {
   border-bottom: 1px solid #DDDDDD;
   padding: 15px 0;
@@ -142,7 +141,7 @@ u {
   top: 25% !important;
   margin-left: -250px !important;
 
-  background: url(https://s3.amazonaws.com/hrla28renttherunway/icons/dateInfoBottom.png) no-repeat white !important;
+  background: url(https://s3.amazonaws.com/renttherunwayhrla28/icons/dateInfoBottom.png) no-repeat white !important;
   background-position: 73% 93% !important;
   background-size: 410px !important;
 
@@ -198,13 +197,13 @@ li.DayPicker_weekHeader_li {
 }
 .DayPickerNavigation_leftButton__horizontalDefault {
   border: 0 !important;
-  background: url(https://s3.amazonaws.com/hrla28renttherunway/icons/leftButton.png) no-repeat !important;
+  background: url(https://s3.amazonaws.com/renttherunwayhrla28/icons/leftButton.png) no-repeat !important;
   background-size: 6px !important;
   background-position: 50% 50% !important;
 }
 .DayPickerNavigation_rightButton__horizontalDefault {
   border: 0 !important;
-  background: url(https://s3.amazonaws.com/hrla28renttherunway/icons/rightButton.png) no-repeat !important;
+  background: url(https://s3.amazonaws.com/renttherunwayhrla28/icons/rightButton.png) no-repeat !important;
   background-size: 6px !important;
   background-position: 50% 50% !important;
 }
@@ -219,6 +218,9 @@ li.DayPicker_weekHeader_li {
 .CalendarDay__blocked_calendar{
   background-color: #E5E5E5 !important;
   color: #999999 !important;
+}
+.CalendarDay__blocked_calendar.CalendarDay__highlighted_calendar {
+  background-color: #ffe8bc !important;
 }
 .CalendarDay__hovered_offset {
   background: #dec7ae !important;
@@ -264,22 +266,22 @@ li.DayPicker_weekHeader_li {
   bottom: auto;
 } */
 .CalendarDay__selected_start {
-  background: url('https://s3.amazonaws.com/hrla28renttherunway/icons/white+square.png') no-repeat #C09566 !important;
+  background: url('https://s3.amazonaws.com/renttherunwayhrla28/icons/white+square.png') no-repeat #C09566 !important;
   background-position: 12% 12% !important;
   background-size: 10px !important;
 }
 .CalendarDay__selected_end {
-  background: url('https://s3.amazonaws.com/hrla28renttherunway/icons/white+square.png') no-repeat #C09566 !important;
+  background: url('https://s3.amazonaws.com/renttherunwayhrla28/icons/white+square.png') no-repeat #C09566 !important;
   background-position: 88% 88% !important;
   background-size: 10px !important;
  }
 .CalendarDay__selected_start.CalendarDay__hovered_offset {
-  background: url('https://s3.amazonaws.com/hrla28renttherunway/icons/champagneSquare.png') no-repeat #C09566 !important;
+  background: url('https://s3.amazonaws.com/renttherunwayhrla28/icons/champagneSquare.png') no-repeat #C09566 !important;
   background-position: 12% 12% !important;
   background-size: 10px !important;
  }
 .CalendarDay__selected_end.CalendarDay__hovered_offset {
-  background: url('https://s3.amazonaws.com/hrla28renttherunway/icons/champagneSquare.png') no-repeat #C09566 !important;
+  background: url('https://s3.amazonaws.com/renttherunwayhrla28/icons/champagneSquare.png') no-repeat #C09566 !important;
   background-position: 88% 88% !important;
   background-size: 10px !important;
 }

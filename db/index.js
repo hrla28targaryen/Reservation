@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost/renttherunway', { useNewUrlParser: true })
 var reservationSchema = new mongoose.Schema({
   itemID: { type: String, required: true },
   size: { type: String, required: true },
-  availableDate: [{ type: Date }]
+  bookedDate: [{ type: Date }]
 }
 // , { timestamps: { createdAt: 'created_at' } }
 );
