@@ -40,9 +40,16 @@ class Reservation extends React.Component {
       dateSpan: 3,
     }
     this.fetchOne = this.fetchOne.bind(this);
+    this.modalOpen = this.modalOpen.bind(this);
+    this.modalClose = this.modalClose.bind(this);
     this.onDatesChange = this.onDatesChange.bind(this);
     this.dateSpanChange = this.dateSpanChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.onFocusChange = this.onFocusChange.bind(this);
+    this.renderCalendarInfo = this.renderCalendarInfo.bind(this);
+    this.isDayHighlighted = this.isDayHighlighted.bind(this);
+    this.isOutsideRange = this.isOutsideRange.bind(this);
+    this.endDateOffset = this.endDateOffset.bind(this);
   }
 
   componentDidMount() {
@@ -53,20 +60,22 @@ class Reservation extends React.Component {
     var i = String(Math.floor(Math.random() * 100));
     rand += i.padStart(3,"0");
     var tempItems = {};
-    $.get(`/api/reservation/${rand}`, (data) => {
-      var { productID, productName, designerName, facebook, rentPrice, purchasePrice, items } = data;
-      
-      for (let i=0; i<items.length; i++) {
-        if (!Object.keys(tempItems).includes(items[i].size)) {
-          tempItems[items[i].size] = items[i].bookedDate;
+    $.get(`/api/reservation/${rand}`, ({ productID, productName, designerName, facebook, rentPrice, purchasePrice, items }) => {
+      for (let item of items) {
+        if (!Object.keys(tempItems).includes(item.size)) {
+          tempItems[item.size] = [];
+          for (let date of item.bookedDate) {
+            tempItems[item.size].push(new Date(date).toDateString());
+          }
+          console.log(tempItems);
         } else {
           var pivotDate = [];
-          for ( let date of items[i].bookedDate ) {
-            if (tempItems[items[i].size].includes(date)) {
+          for ( let date of item.bookedDate ) {
+            if (tempItems[item.size].includes(new Date(date).toDateString())) {
               pivotDate.push(date)
             }
           }
-          tempItems[items[i].size] = pivotDate;
+          tempItems[item.size] = pivotDate;
         }
       }
       var filteredArr = [];
@@ -80,6 +89,19 @@ class Reservation extends React.Component {
         productID, productName, designerName, facebook, rentPrice, purchasePrice, items: filteredArr
       });
     })
+  }
+
+  modalOpen(e) {
+    const {id} = e.target;
+    this.setState({ [id]: true });
+  }
+
+  modalClose() {
+    this.setState({
+      sign_in: false,
+      size_table: false,
+      pro_table: false,
+    });
   }
 
   onDatesChange({ startDate, endDate }) {
@@ -99,31 +121,42 @@ class Reservation extends React.Component {
     for (let d of dateArray1) {
       dateArray.push(moment(d));
     }
-    this.setState({
-      bookedDate: dateArray
-    })
+    this.setState({ bookedDate: dateArray });
   }
 
+  onFocusChange(focusedInput) {
+    this.setState({ focusedInput });
+  }
+
+  renderCalendarInfo() {
+    return <div><div className="closeButton">x</div><center className="calendarInfo">Pick a delivery date 1–2 days before your event</center></div>;
+  }
+
+  isDayHighlighted (day) {
+    return this.state.bookedDate.filter(d => d.isSame(day, 'day')).length > 0;
+  }
+
+  isOutsideRange (day) {
+    return day.isBefore(moment()) || day.isAfter(moment().add(120, 'days'));
+  }
+
+  endDateOffset (day) {
+    return day.clone().add(this.state.dateSpan, "d");
+  }
 
   render() {
     // getting all cloths sizes ===============================
     var allSize = this.state.items.map(e => e.size);
     allSize = allSize.filter((item, idx) => allSize.indexOf(item) === idx);
 
-    // close the modal button
-    let modalClose1 = () => this.setState({ sign_in: false });
-    let modalClose2 = () => this.setState({ size_table: false });
-    let modalClose3 = () => this.setState({ pro_table: false });
-    
     // blocking all holidays and Sundays ======================
     var start = moment('2019-04-01'), 
-    end = moment('2019-09-30'), 
-    day = 0;                    
+      end = moment('2019-09-30'), 
+      memorialDay = moment('2019-05-27'), 
+      independenceDay = moment('2019-07-04');
     var holiday = [];
-    var memorialDay = moment('2019-05-27'),
-    independenceDay = moment('2019-07-04');
     var current = start.clone();
-    while (current.day(7 + day).isBefore(end)) {
+    while (current.day(7).isBefore(end)) {
       holiday.push(current.clone());
     }
     holiday.push(memorialDay, independenceDay);
@@ -177,13 +210,13 @@ class Reservation extends React.Component {
             </h1>
             <div className="pdpHeader_heart" >
               <div className={header.heart} >
-                <div className={header.heart_buttonMinimal} onClick={() => this.setState({ sign_in: true })} >
-                  <img className={header.like} src="https://s3.amazonaws.com/renttherunwayhrla28/icons/like.png" />
+                <div className={header.heart_buttonMinimal} onClick={this.modalOpen} >
+                  <img id="sign_in" className={header.like} src="https://s3.amazonaws.com/renttherunwayhrla28/icons/like.png" />
                 </div>
                 <ModalLike
                   className="modalLike"
                   show={this.state.sign_in}
-                  onHide={modalClose1}
+                  onHide={this.modalClose}
                 />
               </div>
             </div>
@@ -251,11 +284,11 @@ class Reservation extends React.Component {
               </div>
 
               <div className={inputForm.sizeRefTable}>
-                <div className={inputForm.sizeRefButton} onClick={() => this.setState({ size_table: true })} >SIZE &amp; FIT </div>&nbsp;
+                <div id="size_table" className={inputForm.sizeRefButton} onClick={this.modalOpen} >SIZE &amp; FIT </div>&nbsp;
                 <ModalSize
                   className="modalSizeTable"
                   show={this.state.size_table}
-                  onHide={modalClose2}
+                  onHide={this.modalClose}
                 />
               </div>
 
@@ -287,7 +320,7 @@ class Reservation extends React.Component {
                       endDate={this.state.endDate}
                       onDatesChange={this.onDatesChange}
                       focusedInput={this.state.focusedInput}
-                      onFocusChange={focusedInput => this.setState({ focusedInput })}
+                      onFocusChange={focusedInput => this.onFocusChange(focusedInput)}
                       numberOfMonths={1}
                       hideKeyboardShortcutsPanel
                       enableOutsideDays
@@ -299,11 +332,11 @@ class Reservation extends React.Component {
                       withPortal
                       calendarInfoPosition="top"
                       transitionDuration={0}
-                      renderCalendarInfo={() => <div><div className="closeButton">x</div><center className="calendarInfo">Pick a delivery date 1–2 days before your event</center></div>}
+                      renderCalendarInfo={this.renderCalendarInfo}
                       isDayBlocked={day => holiday.filter(d => d.isSame(day, 'day')).length > 0}
-                      endDateOffset={day => day.clone().add(this.state.dateSpan, "d")}
-                      isOutsideRange={day => day.isBefore(moment()) || day.isAfter(moment().add(120, 'days'))}
-                      isDayHighlighted={day => this.state.bookedDate.filter(d => d.isSame(day, 'day')).length > 0}
+                      endDateOffset={day => this.endDateOffset(day)}
+                      isOutsideRange={day => this.isOutsideRange(day)}
+                      isDayHighlighted={day => this.isDayHighlighted(day)}
                       onPrevMonthClick={this.onPrevMonthClick}
                       endDateId="123"
                       startDateId="abc"
@@ -323,11 +356,11 @@ class Reservation extends React.Component {
                     </label>
                     <label htmlFor="reservationPro" className={inputForm.proLabel}>I want free shipping &amp; insurance with PRO.
                     </label>
-                    <a className={inputForm.standAlone} onClick={() => this.setState({ pro_table: true })} >Learn More</a>
+                    <a id="pro_table" className={inputForm.standAlone} onClick={this.modalOpen} >Learn More</a>
                     <ModalPro
                       className="modalPro"
                       show={this.state.pro_table}
-                      onHide={modalClose3}
+                      onHide={this.modalClose}
                     />
                   </div>
                   <div className={inputForm.labelPRO}></div>
