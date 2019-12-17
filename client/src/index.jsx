@@ -100,7 +100,7 @@ class Reservation extends React.Component {
   onDatesChange({ startDate, endDate }) {
     this.setState({ startDate });
     this.setState({ endDate });
-    let str = `${moment(startDate).format('ddd M/DD')} - ${moment(endDate).format('ddd M/DD')}`;
+    let str = `${moment(startDate).format('ddd M/DD')} – ${moment(endDate).format('ddd M/DD')}`;
     this.setState({stringDateRange: str});
   }
 

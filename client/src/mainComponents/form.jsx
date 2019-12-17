@@ -7,6 +7,7 @@ import moment from 'moment';
 import inputForm from './form.scss';
 import ModalSize from '../modalComponents/modalSize.jsx';
 import ModalPro from '../modalComponents/modalPro.jsx';
+import CalArrowIcon from "./arrowIcon.jsx";
 
 
 class Form extends React.Component {
@@ -29,9 +30,6 @@ class Form extends React.Component {
     holiday.push(memorialDay, independenceDay);
     holiday.push(...state.bookedDate);
     holiday.map(m => m.format('LLLL'));
-
-    // nextTwoWeeks date for pricing schema ======================
-    var nextTwoWeeks = moment().add(14, 'days');
 
     return (
       <div id="2form">
@@ -94,9 +92,9 @@ class Form extends React.Component {
                 </div>
 
                 <div className={inputForm.reservationDateWindow_date}>
-                  {/* <input readOnly style={{opacity:0}} type="text" value={state.stringDateRange} /> */}
+                  <input readOnly style={{zIndex: "-1", position:"absolute", width:"250px", padding:"13px 13px", background:"transparent", border:"none", lineHeight:"18px", font:"200 16px Times New Roman", color:"#333333", letterSpacing:"0.2px"}} type="text" value={state.stringDateRange} />
                   <label className={inputForm.datepickerLabel} htmlFor="holdDate"></label>
-                  <DateRangePicker
+                  <DateRangePicker className="okede"
                     startDate={state.startDate}
                     endDate={state.endDate}
                     onDatesChange={onDatesChange}
@@ -105,10 +103,10 @@ class Form extends React.Component {
                     numberOfMonths={1}
                     hideKeyboardShortcutsPanel
                     enableOutsideDays
-                    displayFormat="ddd M/DD"
+                    displayFormat="ddd M/DD "
                     customInputIcon={<img src='https://s3.amazonaws.com/renttherunwayhrla28/icons/calendar.png' width={25} height={25} />}
                     inputIconPosition="after"
-                    customArrowIcon={<p>&nbsp;</p>}
+                    customArrowIcon = {<div> _ </div>}
                     small
                     withPortal
                     calendarInfoPosition="top"

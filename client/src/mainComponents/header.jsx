@@ -1,16 +1,16 @@
 import React from 'react';
-
 import header from './header.scss';
 import ModalLike from '../modalComponents/modalLike.jsx';
+import moment from 'moment';
 
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    const {modalOpen, modalClose, state} = this.props;
+const Header = props => {
+    const {modalOpen, modalClose, state} = props;
     // pricing schema displayed is based on selected date & date span
+    
+    // nextTwoWeeks date for pricing schema ======================
+    const nextTwoWeeks = moment().add(14, 'days');
+
     if (!state.startDate) {
       if (state.dateSpan === 3) {
         var priceTag = (<span className={header.productPriceOriginal} >
@@ -95,7 +95,7 @@ class Header extends React.Component {
         </div>
       </div>
     );
-  }
+
 }
 
 export default Header;
