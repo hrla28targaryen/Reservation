@@ -94,7 +94,7 @@ class Form extends React.Component {
                 <div className={inputForm.reservationDateWindow_date}>
                   <input readOnly style={{zIndex: "-1", position:"absolute", width:"250px", padding:"13px 13px", background:"transparent", border:"none", lineHeight:"18px", font:"200 16px Times New Roman", color:"#333333", letterSpacing:"0.2px"}} type="text" value={state.stringDateRange} />
                   <label className={inputForm.datepickerLabel} htmlFor="holdDate"></label>
-                  <DateRangePicker className="okede"
+                  <DateRangePicker
                     startDate={state.startDate}
                     endDate={state.endDate}
                     onDatesChange={onDatesChange}
