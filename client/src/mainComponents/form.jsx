@@ -7,7 +7,6 @@ import moment from 'moment';
 import inputForm from './form.scss';
 import ModalSize from '../modalComponents/modalSize.jsx';
 import ModalPro from '../modalComponents/modalPro.jsx';
-import CalArrowIcon from "./arrowIcon.jsx";
 
 
 class Form extends React.Component {
@@ -106,7 +105,7 @@ class Form extends React.Component {
                     displayFormat="ddd M/DD "
                     customInputIcon={<img src='https://s3.amazonaws.com/renttherunwayhrla28/icons/calendar.png' width={25} height={25} />}
                     inputIconPosition="after"
-                    customArrowIcon = {<div> _ </div>}
+                    customArrowIcon = {<div></div>}
                     small
                     withPortal
                     calendarInfoPosition="top"
